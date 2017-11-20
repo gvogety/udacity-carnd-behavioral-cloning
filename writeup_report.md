@@ -1,6 +1,6 @@
 
 
-**Behavioral Cloning Project**
+# ** Behavioral Cloning Project **
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 
 ## Rubric Points
 
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here are the [rubric points](https://review.udacity.com/#!/rubrics/432/view)  
 
 ---
 ### Files Submitted & Code Quality
@@ -31,7 +31,7 @@ Submission has the following files at the [Github repository](https://github.com
 
 #### 2. Submission includes functional code
 
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
+Using the Udacity provided simulator and the drive.py file, the car can be driven autonomously around the track by executing
 ```sh
 python drive.py model.h5
 ```
@@ -50,7 +50,7 @@ I first reduced the size of the images by using a Cropping layer to reduce the n
 
 I normalized the data using Keras lambda layer.
 
-For the convolutions, I use 3 layers with 5x5 kernels with 24, 36 and 48 depths. Following that, I used two layers with 3x3 kernels and 64 depths each. After flattening, I used 3 Dense layers with widths of 1164, 100, 50 and 10 to output the steering angle. I experimented with various combinations of kernel sizes, depths and widths of the Dense layers. This set seems to give the most repeatable performance on the simulator in the Autonomous mode. Performance is measured by the number of loops that the car can make on Track 1 (minimum required is one loop). I effectively did a grid search on kernel, depths, widths, dropouts and the number of layers. Unfortunately, improvements in validation accuracy did not result in keeping the car on the track. So I abandoned relying on the validation accuracy to predict final performance. Always take it for a spin.
+For the convolutions, I use 3 layers with 5x5 kernels with 24, 36 and 48 depths. Following that, I used two layers with 3x3 kernels and 64 depths each. After flattening, I used 4 Dense layers with widths of 1164, 100, 50 and 10 to output the steering angle. I experimented with various combinations of kernel sizes, depths and widths of the Dense layers. This set seems to give the most repeatable performance on the simulator in the Autonomous mode. Performance is measured by the number of loops that the car can make on Track 1 (minimum required is one loop). I effectively did a grid search on kernel, depths, widths, dropouts and the number of layers. Unfortunately, improvements in validation accuracy did not result in keeping the car on the track. So I abandoned relying on the validation accuracy to predict final performance. Always take it for a spin.
 
 
 The model includes RELU layers to introduce nonlinearity.
@@ -77,7 +77,7 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to use NVIDIA model and try to reduce the number of parameters and hence the model size as a resuly but still achive a functional model.
+The overall strategy for deriving a model architecture was to use NVIDIA model and try to reduce the number of parameters and hence the model size as a result but still achieve a functional model.
 
 My first step was to use a convolution neural network model similar to the NVIDIA model.. but only 2 or 3 convolution layers and 3 Dense layers. Even though the car was able to stay on the road most of the time, navigating the curves was not reliable. Moreover, number of variables/weights trained was reaching 8-10 million and the corresponding model size was exceeding 100MB. As I introduced more Convolution layers and Dense layers, there was better performance on the road, w.r.t navigating the curve and reduced the number of trained variables to 1.7M and model size to 20MB.
 
@@ -85,13 +85,13 @@ In order to gauge how well the model was working, I split my image and steering 
 
 To combat overfitting, I introduced Dropout layers.
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. Driving at high speeds (more than 20) is not reliable. With more training data or with training with speed also (as opposed to just steering angle), better results can be achieved at higher speeds.
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. Here is the [Video](https://github.com/gvogety/udacity-carnd-behavioral-cloning/blob/master/video.mp4). Additional videos are available [here](https://github.com/gvogety/udacity-carnd-behavioral-cloning/tree/master/video). Driving at high speeds (more than 20) is not reliable. With more training data or training with speed also (as opposed to just steering angle), better results can be achieved at higher speeds.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes.
+The final model architecture (model.py lines 124-170) consisted of a convolution neural network with the following layers and layer sizes.
 
-Here is a visualization of the architecture.
+Here is a summary of the architecture.
 
 ![alt text][image1]
 
@@ -113,6 +113,6 @@ To augment the data set, I also flipped images and angles thinking various curve
 
 After the collection process, I had around 5000 data points. I put 20% of the data into a validation set.
 Data collection and augmentation was done in a generator function to be able to accommodate large data sets.
-After augmentation, I had 22,700 data points after augmentation. Preprocessing (basic normalization and cropping) step was part of the model and no additional preprocessing was done.
+After augmentation, I had 22,700 data points. Preprocessing (basic normalization and cropping) step was part of the model and no additional preprocessing was done.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced by validation accuracy staying very steady afetr 5 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
