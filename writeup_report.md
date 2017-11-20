@@ -1,10 +1,4 @@
-#**Behavioral Cloning**
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
 
 **Behavioral Cloning Project**
 
@@ -22,20 +16,21 @@ The goals / steps of this project are the following:
 [image2]: ./images/image_augmentation.png "Augmented Image"
 
 ## Rubric Points
+
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ###Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
-
-Submission has the following files at the [Github repository](https://A/B)
-* model.py contains generator function to load large amount of data, model definition and training code.
-* drive.py for driving the car in autonomous mode. This is unmodified.
-* model.h5 containing a trained convolution neural network.
-* writeup_report.md This file on [GitHub](https://A/C)
+Submission has the following files at the [Github repository](https://github.com/gvogety/udacity-carnd-behavioral-cloning)
+* model.py Contains generator function to load large amount of data, model definition and training code.
+* drive.py For driving the car in autonomous mode. This is unmodified.
+* model.h5 Contains a trained convolution neural network.
+* video.mp4 Video of sample run on with the trained model on Track 1
+* writeup_report.md This file on [GitHub](https://github.com/gvogety/udacity-carnd-behavioral-cloning/blob/master/writeup_report.md)
 
 ####2. Submission includes functional code
+
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
 ```sh
 python drive.py model.h5
