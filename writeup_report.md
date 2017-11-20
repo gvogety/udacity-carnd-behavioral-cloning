@@ -17,10 +17,10 @@ The goals / steps of this project are the following:
 
 ## Rubric Points
 
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
 Submission has the following files at the [Github repository](https://github.com/gvogety/udacity-carnd-behavioral-cloning)
 * model.py Contains generator function to load large amount of data, model definition and training code.
@@ -29,20 +29,20 @@ Submission has the following files at the [Github repository](https://github.com
 * video.mp4 Video of sample run on with the trained model on Track 1
 * writeup_report.md This file on [GitHub](https://github.com/gvogety/udacity-carnd-behavioral-cloning/blob/master/writeup_report.md)
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model is based on NVIDIA's convolution neural network.
 
@@ -55,7 +55,7 @@ For the convolutions, I use 3 layers with 5x5 kernels with 24, 36 and 48 depths.
 
 The model includes RELU layers to introduce nonlinearity.
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 I started with no dropouts. With the training data I have, the laps were almost perfect with the speed around 10, never veering into shoulders, even around the curves. But to reduce overfitting, I started introducing dropouts. Initially I had 2 Dropout layers, one in Convolution layers and another in Dense layers. Then I increased to 4, 2 in Convolution layers and 2 in Dense layers. With this architecture, the car was traveling a bit more erratically, going into shoulders at speed around 10. When I increase the speed, sometimes it completely veers off the road.
 
@@ -63,19 +63,19 @@ So I decided to finalize my model with just two Dropout layers (not exceeding 50
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track for 10-15 laps with multiple launches. I noticed each launch was different, possibly due to random variables used in the simulator.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, doing multiple runs around corners approaching from different angles, doing reverse laps etc. I focused on the corners at different speeds. However, I never tried to recover from a totally-off-the-road position. As a result, the model would not recover from any such situation in the simulator (possible at high speeds)
 
 For details about how I created the training data, see the next section.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to use NVIDIA model and try to reduce the number of parameters and hence the model size as a resuly but still achive a functional model.
 
@@ -87,7 +87,7 @@ To combat overfitting, I introduced Dropout layers.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. Driving at high speeds (more than 20) is not reliable. With more training data or with training with speed also (as opposed to just steering angle), better results can be achieved at higher speeds.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes.
 
@@ -95,11 +95,9 @@ Here is a visualization of the architecture.
 
 ![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded couple of laps on track one using center lane driving. Here is an example image of center lane driving:
-
-![alt text][image2]
+To capture good driving behavior, I first recorded couple of laps on track one using center lane driving.
 
 I then recorded couple of laps in the reverse direction. Then I recorded several runs around the curves while approaching the curve from the center, left and right. I then recorded the vehicle recovering from left and right side after navigating the curve.
 
