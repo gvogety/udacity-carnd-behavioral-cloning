@@ -1,6 +1,6 @@
 
 
-# ** Behavioral Cloning Project **
+# Behavioral Cloning Project 
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 ### Files Submitted & Code Quality
 
 Submission has the following files at the [Github repository](https://github.com/gvogety/udacity-carnd-behavioral-cloning)
-* model.py Contains generator function to load large amount of data, model definition and training code. Takes a ``` --datadir <dirname> ``` optional argument for image data and provides the model in ``` dirname.h5 ``` file. 
+* model.py Contains a generator function to load large amount of data, model definition and training code. Takes a ``` --datadir <dirname> ``` optional argument for image data and provides the model in ``` dirname.h5 ``` file.
 * drive.py For driving the car in autonomous mode. This is unmodified.
 * model.h5 Contains a trained convolution neural network.
 * video.mp4 Video of sample run on with the trained model on Track 1
